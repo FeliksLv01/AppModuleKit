@@ -1,9 +1,41 @@
 # AppModule
 
-[![CI Status](https://img.shields.io/travis/felikslv/AppModule.svg?style=flat)](https://travis-ci.org/felikslv/AppModule)
-[![Version](https://img.shields.io/cocoapods/v/AppModule.svg?style=flat)](https://cocoapods.org/pods/AppModule)
-[![License](https://img.shields.io/cocoapods/l/AppModule.svg?style=flat)](https://cocoapods.org/pods/AppModule)
-[![Platform](https://img.shields.io/cocoapods/p/AppModule.svg?style=flat)](https://cocoapods.org/pods/AppModule)
+Split AppDelegate Into Different Modules，Help You To Implement Componentization
+
+- provide application lifecycle methods to modules
+
+## How To Use
+
+1. Make your `AppDelegate` extends `AppModuleApplicationDelegate`
+2. Module definition, implementation application lifecycle func
+3. Add your app module before calling `super.application(application, didFinishLaunchingWithOptions: launchOptions)`
+
+```swift
+class TestModule: NSObject, AppModuleProtocol {
+    required init(with data: [String : Any]?) {
+        super.init()
+    }
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        print("load TestModel")
+        return true
+    }
+}
+
+@UIApplicationMain
+class AppDelegate: AppModuleApplicationDelegate {
+    var window: UIWindow?
+
+    override func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        AppModuleCenter.shared.addModule(TestModule.self)
+        AppModuleCenter.shared.addModule(TestErrorModule.self)
+
+        super.application(application, didFinishLaunchingWithOptions: launchOptions)
+        return true
+    }
+}
+```
+ 
 
 ## Example
 
@@ -19,11 +51,3 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod 'AppModule'
 ```
-
-## Author
-
-felikslv, felikslv@163.com
-
-## License
-
-AppModule is available under the MIT license. See the LICENSE file for more info.
