@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.prefix_header_file = false
 
-  s.source_files = 'AppModule/Classes/**/*.{swift,h,m}'
+  s.source_files = 'Source/*.swift'
   s.frameworks = 'UIKit'
   s.dependency 'Yams', '~> 4.0'
 end
