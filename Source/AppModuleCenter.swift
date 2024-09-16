@@ -11,7 +11,7 @@ import Foundation
 public class AppModuleCenter: NSObject {
     public static let shared = AppModuleCenter()
 
-    private var _modules: [AppModuleProtocol] = []
+    private var _modules: [AppModule] = []
     private var rwlock = pthread_rwlock_t()
 
     override init() {
@@ -27,7 +27,7 @@ public class AppModuleCenter: NSObject {
     /// - Parameters:
     ///   - moduleClass: Class Type Adopt the AppModuleProtocol
     ///   - data: module init params
-    public func addModule(_ moduleClass: AppModuleProtocol.Type, data: [String: Any]? = nil) {
+    public func addModule(_ moduleClass: AppModule.Type, data: [String: Any]? = nil) {
         pthread_rwlock_wrlock(&rwlock)
         defer { pthread_rwlock_unlock(&rwlock) }
         let module = moduleClass.init(with: data)
@@ -35,7 +35,7 @@ public class AppModuleCenter: NSObject {
     }
 
     /// return all modules in AppModuleCenter，thread safety
-    public var modules: [AppModuleProtocol] {
+    public var modules: [AppModule] {
         pthread_rwlock_rdlock(&rwlock)
         defer { pthread_rwlock_unlock(&rwlock) }
         return _modules
