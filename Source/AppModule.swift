@@ -7,6 +7,4 @@
 
 import Foundation
 
-public protocol AppModule: UIApplicationDelegate {
-    init(with data: [String: Any]?)
-}
+public protocol AppModule: UIApplicationDelegate {}
