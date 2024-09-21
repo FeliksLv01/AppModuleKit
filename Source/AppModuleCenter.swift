@@ -39,7 +39,7 @@ public class AppModuleCenter {
     }
 
     public static func autoRegister() {
-        let beginRegisterTime = CFAbsoluteTimeGetCurrent()
+        let beginRegisterTime = CACurrentMediaTime()
         let bundle = CFBundleGetMainBundle()
         guard let execURL = CFBundleCopyExecutableURL(bundle) as NSURL? else {
             return
@@ -65,7 +65,7 @@ public class AppModuleCenter {
             }
         }
 
-        let endRegisterTime = CFAbsoluteTimeGetCurrent()
-        print("服务注册耗时：\(endRegisterTime - beginRegisterTime)")
+        let endRegisterTime = CACurrentMediaTime()
+        print("AppModuleCenter: 服务注册耗时 => \((endRegisterTime - beginRegisterTime) * 1000)ms")
     }
 }
