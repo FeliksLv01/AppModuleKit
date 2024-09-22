@@ -1,8 +1,8 @@
-# AppModule
+# AppModuleKit
 
 Split AppDelegate Into Different Modules，Help You To Implement Componentization
 
-- provide application lifecycle methods to modules
+-   provide application lifecycle methods to modules
 
 ## How To Use
 
@@ -11,11 +11,7 @@ Split AppDelegate Into Different Modules，Help You To Implement Componentizatio
 3. Add your app module before calling `super.application(application, didFinishLaunchingWithOptions: launchOptions)`
 
 ```swift
-class TestModule: NSObject, AppModuleProtocol {
-    required init(with data: [String : Any]?) {
-        super.init()
-    }
-
+class TestModule: NSObject, AppModule {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         print("load TestModel")
         return true
@@ -35,7 +31,6 @@ class AppDelegate: AppModuleApplicationDelegate {
     }
 }
 ```
- 
 
 ## Example
 
@@ -49,5 +44,5 @@ AppModule is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'AppModule', :git => 'git@github.com:FeliksLv01/AppModule.git'
+pod 'AppModuleKit', :git => 'git@github.com:FeliksLv01/AppModuleKit.git'
 ```
