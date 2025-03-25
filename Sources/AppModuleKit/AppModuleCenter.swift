@@ -5,7 +5,7 @@
 //  Created by FeliksLv on 2025/1/4.
 //
 
-import UIKit
+import Foundation
 
 /// Manager of Application Modules
 @MainActor

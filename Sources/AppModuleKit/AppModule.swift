@@ -5,7 +5,7 @@
 //  Created by FeliksLv on 2025/1/4.
 //
 
-import UIKit
+@_exported import UIKit
 
 @objc
 @MainActor
